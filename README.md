@@ -2,23 +2,42 @@
 
 A handy reference for learning Kotlin while building Android apps!
 
-## 🟢 Basics
+## 🟢 1. Basics
+
+### 1.1 Variables
+- **`val`**: Immutable (cannot be changed, like `readonly` in C#).
+- **`var`**: Mutable (can be changed).
 
 ```kotlin
-// Variables
-val name: String = "Kotlin"   // Immutable (like C#'s 'readonly')
+val name: String = "Kotlin"   // Immutable
 var age: Int = 25             // Mutable
+```
 
-// Type Inference
-val greeting = "Hello"  // Type is inferred automatically
+### 1.2 Type Inference
+- Kotlin can automatically infer the type from the value.
 
-// Null Safety
-var nullable: String? = null  // Use "?" to allow nulls
+```kotlin
+val greeting = "Hello"  // Type is automatically String
+```
 
-// String Interpolation
+### 1.3 Null Safety
+- Use `?` to allow null values and avoid `NullPointerException` errors.
+
+```kotlin
+var nullable: String? = null
+```
+
+### 1.4 String Interpolation
+- Embed variables inside strings using `$`.
+
+```kotlin
 println("Hello, $name! You are $age years old.")
+```
 
-// Functions
+### 1.5 Functions
+- Define functions using the `fun` keyword.
+
+```kotlin
 fun add(a: Int, b: Int): Int {
     return a + b
 }
@@ -27,54 +46,79 @@ fun add(a: Int, b: Int): Int {
 fun subtract(a: Int, b: Int) = a - b
 ```
 
-## 🔄 Control Flow
+## 🔄 2. Control Flow
+
+### 2.1 If-Else Expression
+- Acts as both a statement and an expression.
 
 ```kotlin
-// If-Else Expression
 val max = if (a > b) a else b
+```
 
-// When (Switch Alternative)
+### 2.2 When Expression (Better Switch)
+- More flexible than `switch` in other languages.
+
+```kotlin
 when (age) {
     in 0..17 -> println("Minor")
     18 -> println("Just 18!")
     else -> println("Adult")
 }
+```
 
-// For Loop
-for (i in 1..5) println(i)        // Inclusive range
-for (i in 1 until 5) println(i)   // Exclusive range
+### 2.3 For Loops
+- Iterate through ranges and collections.
 
-// While Loop
+```kotlin
+for (i in 1..5) println(i)        // Inclusive range (1 to 5)
+for (i in 1 until 5) println(i)   // Exclusive range (1 to 4)
+```
+
+### 2.4 While Loops
+- Loop while a condition is true.
+
+```kotlin
 var x = 5
 while (x > 0) {
     println(x--)
 }
 ```
 
-## 🧱 Classes & Objects
+## 🧱 3. Classes & Objects
+
+### 3.1 Class Declaration
+- Classes in Kotlin are declared using the `class` keyword.
 
 ```kotlin
-// Class Declaration
 class Person(val name: String, var age: Int) {
     fun greet() = println("Hi, I'm $name!")
 }
 
-// Object Instantiation
 val person = Person("Alice", 30)
 person.greet()
+```
 
-// Data Class (Auto-generates equals(), hashCode(), toString())
+### 3.2 Data Classes
+- Automatically generates useful methods like `equals()`, `hashCode()`, and `toString()`.
+
+```kotlin
 data class User(val id: Int, val name: String)
+```
 
-// Inheritance
+### 3.3 Inheritance
+- Use `open` to make a class inheritable.
+
+```kotlin
 open class Animal { open fun sound() = println("Animal sound") }
 class Dog : Animal() { override fun sound() = println("Woof!") }
 ```
 
-## 📱 Android Essentials
+## 📱 4. Android Essentials
+
+### 4.1 Activity Basics
+- An `Activity` represents a screen in your app.
 
 ```kotlin
-// Activity Basics
 class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -86,281 +130,111 @@ class MainActivity : AppCompatActivity() {
         }
     }
 }
+```
 
-// Intent (Navigation Between Activities)
+### 4.2 Navigation Between Activities
+- Use `Intent` to move from one activity to another.
+
+```kotlin
 val intent = Intent(this, SecondActivity::class.java)
 intent.putExtra("KEY", "Value")
 startActivity(intent)
 ```
 
-## 📊 Collections
+## 📊 5. Collections
+
+### 5.1 Lists
+- Ordered collections of elements.
 
 ```kotlin
-// Lists
 val numbers = listOf(1, 2, 3)       // Immutable
-val mutableNumbers = mutableListOf(1, 2, 3)
+val mutableNumbers = mutableListOf(1, 2, 3) // Mutable
+```
 
-// Maps
+### 5.2 Maps
+- Key-value pairs.
+
+```kotlin
 val map = mapOf("name" to "Kotlin", "year" to 2011)
+```
 
-// Looping Through Collections
+### 5.3 Looping Through Collections
+- Use `forEach` for cleaner iteration.
+
+```kotlin
 numbers.forEach { println(it) }
 ```
 
-## 🔥 Coroutines (Asynchronous Work)
+## 🔥 6. Coroutines (Asynchronous Work)
+
+- Coroutines let you write asynchronous code in a simple way.
 
 ```kotlin
-// Launching a Coroutine
 GlobalScope.launch {
-    delay(1000L)  // Suspend function
+    delay(1000L)  // Suspend function (pauses coroutine)
     println("Coroutine done!")
 }
 ```
 
+# 🧰 Android XML Layouts & Components Cheat Sheet
 
-# Android XML Layouts & Components Cheat Sheet
+## 📐 1. Common Layout Types
 
-This cheat sheet provides an overview of Android XML layouts and common UI components. It includes examples of different layouts, attributes, and other useful XML elements for Android development.
-
----
-
-## 📐 1. **Common Layout Types**
-
-### 1.1 **LinearLayout**
-- Arranges child views in a **vertical** or **horizontal** sequence.
+### 1.1 LinearLayout
+- Arranges child views **vertically** or **horizontally**.
 
 ```xml
 <LinearLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
     android:orientation="vertical">
 
     <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
         android:text="Hello LinearLayout!" />
 
 </LinearLayout>
 ```
 
-### 1.2 **RelativeLayout**
-- Positions child views **relative** to each other or the parent.
+### 1.2 ConstraintLayout
+- Flexible layout with powerful constraints for advanced designs.
 
 ```xml
-<RelativeLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent">
-
-    <TextView
-        android:id="@+id/title"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Hello RelativeLayout!" />
-
-    <Button
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Click Me"
-        android:layout_below="@id/title" />
-
-</RelativeLayout>
-```
-
-### 1.3 **ConstraintLayout**
-- Flexible layout with powerful constraints for complex designs.
-
-```xml
-<androidx.constraintlayout.widget.ConstraintLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent">
+<androidx.constraintlayout.widget.ConstraintLayout>
 
     <TextView
         android:id="@+id/titleText"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
         android:text="Hello ConstraintLayout!"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent" />
+        app:layout_constraintTop_toTopOf="parent" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
 ```
 
-### 1.4 **FrameLayout**
-- Stacks child views **on top** of each other.
+## 📊 2. Common XML UI Components
 
-```xml
-<FrameLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent">
-
-    <ImageView
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:src="@drawable/background" />
-
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Overlay Text" />
-
-</FrameLayout>
-```
-
-### 1.5 **GridLayout**
-- Organizes child views into **rows and columns**.
-
-```xml
-<GridLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:columnCount="2">
-
-    <TextView
-        android:layout_column="0"
-        android:text="Item 1" />
-
-    <TextView
-        android:layout_column="1"
-        android:text="Item 2" />
-
-</GridLayout>
-```
-
----
-
-## 📊 2. **Common XML UI Components**
-
-### 2.1 **TextView**
+### 2.1 TextView
 - Displays **text** on the screen.
 
 ```xml
 <TextView
-    android:id="@+id/myTextView"
-    android:layout_width="wrap_content"
-    android:layout_height="wrap_content"
     android:text="Hello, World!"
-    android:textSize="20sp"
-    android:textColor="#FF0000" />
+    android:textSize="20sp" />
 ```
 
-### 2.2 **EditText**
-- Allows users to **input text**.
-
-```xml
-<EditText
-    android:id="@+id/editText"
-    android:layout_width="match_parent"
-    android:layout_height="wrap_content"
-    android:hint="Enter your name" />
-```
-
-### 2.3 **Button**
-- Used to trigger **actions** when clicked.
+### 2.2 Button
+- Triggers actions when clicked.
 
 ```xml
 <Button
-    android:id="@+id/button"
-    android:layout_width="wrap_content"
-    android:layout_height="wrap_content"
     android:text="Submit" />
 ```
 
-### 2.4 **ImageView**
-- Displays **images** from drawable resources or URLs.
+### 2.3 EditText
+- Allows **user input**.
 
 ```xml
-<ImageView
-    android:layout_width="wrap_content"
-    android:layout_height="wrap_content"
-    android:src="@drawable/ic_launcher" />
+<EditText
+    android:hint="Enter your name" />
 ```
 
-### 2.5 **CheckBox**
-- Provides a **checkable** option.
-
-```xml
-<CheckBox
-    android:id="@+id/checkBox"
-    android:layout_width="wrap_content"
-    android:layout_height="wrap_content"
-    android:text="I agree" />
-```
-
-### 2.6 **RadioButton & RadioGroup**
-- Allows **exclusive selection** among multiple options.
-
-```xml
-<RadioGroup
-    android:layout_width="wrap_content"
-    android:layout_height="wrap_content">
-
-    <RadioButton
-        android:id="@+id/radio1"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Option 1" />
-
-    <RadioButton
-        android:id="@+id/radio2"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Option 2" />
-
-</RadioGroup>
-```
-
-### 2.7 **Switch**
-- Toggle **on/off** state.
-
-```xml
-<Switch
-    android:id="@+id/switch"
-    android:layout_width="wrap_content"
-    android:layout_height="wrap_content"
-    android:text="Enable Feature" />
-```
-
-### 2.8 **SeekBar**
-- Selects a **value** within a range.
-
-```xml
-<SeekBar
-    android:id="@+id/seekBar"
-    android:layout_width="match_parent"
-    android:layout_height="wrap_content"
-    android:max="100" />
-```
-
-### 2.9 **Spinner**
-- Dropdown menu for **item selection**.
-
-```xml
-<Spinner
-    android:id="@+id/spinner"
-    android:layout_width="wrap_content"
-    android:layout_height="wrap_content" />
-```
-
-### 2.10 **ProgressBar**
-- Indicates **progress** for tasks.
-
-```xml
-<ProgressBar
-    android:layout_width="wrap_content"
-    android:layout_height="wrap_content"
-    android:indeterminate="true" />
-```
-
----
-
-## 🔍 3. **Useful XML Attributes**
+## 🔍 3. Useful XML Attributes
 
 | Attribute            | Description                        |
 |----------------------|------------------------------------|
@@ -372,16 +246,9 @@ This cheat sheet provides an overview of Android XML layouts and common UI compo
 | `android:padding`    | Inner spacing (e.g., `16dp`)       |
 | `android:gravity`    | Content alignment (`center`)       |
 
-This guide should provide a strong foundation for working with Android XML layouts and UI components. 🚀
-
-
-
 ## 📚 Resources
 
 - [Kotlin Official Documentation](https://kotlinlang.org/docs/home.html)
 - [Android Developer Guide](https://developer.android.com/docs)
 
----
-
 🚀 Happy Coding with Kotlin!
-
